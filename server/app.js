@@ -40,7 +40,10 @@ app.get("/api/notes/:title", async (req, res) => {
 
 app.post("/api/notes", async (req, res) => {
   try {
-    const notes = await db("notes").insert(req.body);
+    const notes = await db("notes").insert({
+      title: "new note",
+      note: "this is a new note",
+    });
     console.log("note created!");
     res.status(201).json(notes);
   } catch (err) {
